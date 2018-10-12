@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 app.post('/createuser',
-  userController.verifyUser, 
+  userController.verifyUser,
   userController.createUser, 
   (req, res) => {
     res.status(200).json(res.locals.data);
