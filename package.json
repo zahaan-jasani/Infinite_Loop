@@ -4,7 +4,7 @@
   "description": "Helpdesk ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "parcel index.html",
     "server": "nodemon src/server/server.js"
   },
@@ -20,8 +20,12 @@
     "react-dom": "^16.5.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "jest": "^23.6.0",
     "nodemon": "^1.18.4",
-    "parcel": "^1.10.3"
+    "parcel": "^1.10.3",
+    "superagent": "^4.0.0-beta.5",
+    "supertest": "^3.3.0"
   }
 }
