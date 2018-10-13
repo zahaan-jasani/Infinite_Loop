@@ -31,7 +31,7 @@ module.exports = {
       db.one("UPDATE post SET status=$1 WHERE id=$2 RETURNING status", [req.body.status + 1 ,req.body.id])
       .then(data => {
         res.locals.data = data;
-        next()
+        next();
       })
       .catch(err => {
         next(err);
