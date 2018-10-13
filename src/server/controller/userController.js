@@ -1,9 +1,17 @@
-const db = require('../postgresql.js')
+const db = require('../postgresql.js');
+
 module.exports = {
+ /**
+   * creates new user record and returns the created record
+   * @param { Object } req request object 
+   * @param { object } res response object
+   * @param { function } next function to go to next middlewear 
+   */
   createUser(req, res, next) {
-    if(Object.keys(req.body).length === 2 && req.body.role && req.body.name){
+    //check request has correct body format
+    if(Object.keys(req.body).length === 2 && req.body.name && req.body.role) {
+      //if role equals to user, create user 
       if(req.body.role === 'user') {
-        console.log("USER");
         db.one("INSERT INTO student(name) VALUES ($1) RETURNING (name)", req.body.name)
         .then(data => {
           res.locals.data = data;
@@ -14,7 +22,7 @@ module.exports = {
           return next(err);
         });
       } else{
-        console.log("HELPER");
+        // if not user create helper
         db.one("INSERT INTO helper(name) VALUES ($1) RETURNING (name)", req.body.name)
         .then(data => {
           res.locals.data = data;
@@ -25,11 +33,18 @@ module.exports = {
           return next(err);
         });
       }
-    } else{
-      res.status(400).send();
+
+    } else {
+      return res.status(400).send();
     }
    
   },
+  /**
+   * Checks to see if user is in the database, if not calls createUser()
+   * @param {Object} req - request object
+   * @param {Object} res - response object
+   * @param {Function} next - passes req and res to the next middleware
+   */
   verifyUser(req, res, next) {
     db.any('SELECT name FROM student WHERE name = $1', req.body.name)
     .then((data) => {
