@@ -10,7 +10,7 @@ module.exports = {
    * @param {function} next sends req and res to next middleware
    */
   getPosts(req, res, next) {
-    app.any('SELECT * FROM "post"')
+    db.any('SELECT h.name AS resolvedby, p.problem, p.expect, p.tried, p.suspect, p.topic, s.status, stu.name AS createdby FROM ((("post" AS p INNER JOIN status AS s ON p.status = s.id) INNER JOIN student AS stu ON p.createdby = stu.id) INNER JOIN helper as h ON p.resolvedby = h.id)')
       .then(data => {
         res.locals.data = data;
         return next();
@@ -26,8 +26,8 @@ module.exports = {
    * @param {function} next sends req and res to next middleware
    */
   createPost(req, res, next) {
-    if(Object.keys(req.body).length === 8){
-      db.one("INSERT INTO post (createdby, problem, expect, tried, suspect, status, topic) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *", [req.body.createdby, req.body.problem, req.body.expect, req.body.tried, req.body.suspect, req.body.status, req.body.topic])
+    if(Object.keys(req.body).length === 6){
+      db.one("INSERT INTO post (createdby, problem, expect, tried, suspect, topic) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *", [req.body.createdby, req.body.problem, req.body.expect, req.body.tried, req.body.suspect, req.body.topic])
       .then(data => {
         res.locals.data = data;
         next();
