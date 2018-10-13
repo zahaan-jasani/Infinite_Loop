@@ -11,8 +11,8 @@ module.exports = {
     //check request has correct body format
     if(Object.keys(req.body).length === 2 && req.body.name && req.body.role) {
       //if role equals to user, create user 
-      if(req.body.role === 'user') {
-        db.one("INSERT INTO student(name) VALUES ($1) RETURNING (name)", req.body.name)
+      if(req.body.role === 'student') {
+        db.one("INSERT INTO student(name) VALUES ($1) RETURNING *", req.body.name)
         .then(data => {
           res.locals.data = data;
           return next();
@@ -23,7 +23,7 @@ module.exports = {
         });
       } else{
         // if not user create helper
-        db.one("INSERT INTO helper(name) VALUES ($1) RETURNING (name)", req.body.name)
+        db.one("INSERT INTO helper(name) VALUES ($1) RETURNING *", req.body.name)
         .then(data => {
           res.locals.data = data;
           return next();
