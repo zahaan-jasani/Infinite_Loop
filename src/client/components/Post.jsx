@@ -4,35 +4,47 @@ const Post = (props) => {
   //user info
   const { name, role} = props;
   //post info
-  const { createdBy, resolvedBy, problem, expect, tried, suspect, topic, status} = props;
+  const { createdBy, resolvedBy, problem, expect, tried, suspect, topic, status, helperid, studentid, statusid, postid} = props;
   //eventHandlers
-  const { updateStatus} = props;
+  const { changeStatus } = props;
 
   const style = {
     post: {
-      height: '95%',
+      margin: '5px',
+      border: '1px solid black',
+      display: 'inline-block',
+      height: '300px',
       width: '250px',
-      backgroundColor: 'White'
+      backgroundColor: 'White',
+      fontSize: '.7e'
+    },
+    pStyle: {
+      margin: '0px',
+      padding:'3px',
+      fontSize: '.7em'
+    },
+    h2Style: {
+      fontSize: '.7em'
     }
   }
 
   return(
-    <div className='post'>
+    <div style = {style.post}>
       <div className='ledger'>
-        <p>Created By: {createdBy}</p>
-        <p>Resolved By: {resizeBy}</p>
+        <p style={style.pStyle}>Created By: {createdBy}</p>
+        <p style={style.pStyle}>Resolved By: {resolvedBy}</p>
       </div>
-      <h2>Problem:</h2>
-        <p>{problem}</p>
-      <h2>Expect:</h2>
-        <p>{expect}</p>
-      <h2>Tried:</h2>
-        <p>{tried}</p>
-      <h2>Suspect:</h2>
-        <p>{suspect}</p>
+      <h2 style={style.h2Style}>Problem:</h2>
+        <p style={style.pStyle}>{problem}</p>
+      <h2 style={style.h2Style}>Expect:</h2>
+        <p style={style.pStyle}>{expect}</p>
+      <h2 style={style.h2Style}>Tried:</h2>
+        <p style={style.pStyle}>{tried}</p>
+      <h2 style={style.h2Style}>Suspect:</h2>
+        <p style={style.pStyle}>{suspect}</p>
       <div className='footer'>
         <div>topic</div>
-        <button className='statusButton' onClick={ () => {}  }> {status} </button>
+        <button className='statusButton' onClick={() => {changeStatus(studentid, statusid, postid)}  }> {status} </button>
       </div>
     </div>
   )

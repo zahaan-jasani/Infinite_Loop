@@ -1,32 +1,36 @@
 import React from 'react';
 import Post from './Post';
 
-export const PostSection = (props) => {
+const PostSection = (props) => {
   // array of posts by status
   const { notStarted, inProgress, closed } = props;
   // handlers
-  const { updateStatus } = props; 
+  const { changeStatus } = props; 
   // user info
   const { name, role } = props;
 
   //css style for containers
   const style = {
     postContainer: {
-      height: '700px',
-      width: '90%',
+      // display: 'flex',
+      // height: '800px',
+      // width: '100%',
       borderTop: '6px solid rgb(85, 85, 85)',
       backgroundColor: 'rgb(226, 226, 226)'
     },
     postRow: {
-      height: '250px',
-      width: '95%',
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      // height: '350px',
+      // width: '100%',
       borderTop: '3px solid rgb(85, 85, 85)',
       backgroundColor: 'rgb(185, 185, 185)',
       boxShadow: '3px 6px #888888'
     },
     postRowClosed: {
-      height: '100px',
-      width: '95%',
+      height: '300px',
+      width: '100%',
       borderTop: '3px solid rgb(85, 85, 85)',
       backgroundColor: 'rgb(185, 185, 185)',
       boxShadow: '3px 6px #888888'
@@ -39,15 +43,19 @@ export const PostSection = (props) => {
       key={index}
       name={name}
       role={role}
-      createdBy={post.createdBy}
-      resolvedBy={post.resolvedBy}
+      createdBy={post.createdby}
+      resolvedBy={post.resolvedby}
       problem={post.problem}
       expect={post.expect}
       tried={post.tried}
       suspect={post.suspect}
       topic={post.topic}
       status={post.status}
-      updateStatus={updateStatus}
+      changeStatus={changeStatus}
+      helperid = {post.helperid}
+      studentid = {post.studentid}
+      statusid = {post.statusid}
+      postid = {post.postid}
       />
   });
   //iterate through each notStarted post and create component
@@ -56,15 +64,19 @@ export const PostSection = (props) => {
       key={index}
       name={name}
       role={role}
-      createdBy={post.createdBy}
-      resolvedBy={post.resolvedBy}
+      createdBy={post.createdby}
+      resolvedBy={post.resolvedby}
       problem={post.problem}
       expect={post.expect}
       tried={post.tried}
       suspect={post.suspect}
       topic={post.topic}
       status={post.status}
-      updateStatus={updateStatus}
+      changeStatus={changeStatus}
+      helperid = {post.helperid}
+      studentid = {post.studentid}
+      statusid = {post.statusid}
+      postid = {post.postid}
       />
   });
   //iterate through each notStarted post and create component
@@ -73,15 +85,19 @@ export const PostSection = (props) => {
       key={index}
       name={name}
       role={role}
-      createdBy={post.createdBy}
-      resolvedBy={post.resolvedBy}
+      createdBy={post.createdby}
+      resolvedBy={post.resolvedby}
       problem={post.problem}
       expect={post.expect}
       tried={post.tried}
       suspect={post.suspect}
       topic={post.topic}
       status={post.status}
-      updateStatus={updateStatus}
+      changeStatus={changeStatus}
+      helperid = {post.helperid}
+      studentid = {post.studentid}
+      statusid = {post.statusid}
+      postid = {post.postid}
       />
   });
 
@@ -101,3 +117,5 @@ export const PostSection = (props) => {
     </div>
   )
 }
+
+export default PostSection
