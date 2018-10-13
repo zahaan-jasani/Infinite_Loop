@@ -5,18 +5,21 @@ const HOST = 'http://localhost:3000';
 
 describe('Test the root path', () => {
   it('It should response the GET method', (done) => {
-    request(HOST).get('/').then((response) => {
-      expect(response.statusCode).toBe(200);
-      done();
-    });
+    request(HOST).get('/')
+    .expect('Content-Type', 'text/html; charset=UTF-8')
+    .expect(200, done)
   });
 });
 describe('post', () => {
   it('responds to valid request with 200 status and application/json content type', (done) => {
     request(HOST)
       .get('/home')
-      .expect('Content-Type', /application\/json/)
-      .expect(200, done);
+      .then((res) => {
+        expect(res)
+        expect(res.status).toBe(200);
+        done()
+      })
+
   });
   it('should return the object created in the database', (done) => {
     const testObj = { name: 'Pablo', role: 'user' };
@@ -35,7 +38,41 @@ describe('post', () => {
       .send(testObj)
       .then((res) => {
         expect(res.status).toBe(400);
-        done();
+        done()
       })
   })
 });
+
+describe('patch', ()=> {
+  it('responds to valid request with 200 status and application/json type', (done) => {
+    const statusObj = {postid: 1, userid: 1, status: 2};
+    request(HOST)
+      .patch('/status')
+      .send(statusObj)
+      .then((res) => {
+        expect(res.status).toBe(200);
+        done()
+      })
+  })
+  it('it should return the updated object to the client', (done) => {
+    const statusObj = {postid: 1, userid: 1, status: 1};
+    request(HOST)
+      .patch('/status')
+      .send(statusObj)
+      .then((res) => {
+        expect(res.status).toBe(200);
+        expect(res.body).toEqual({status: 2});
+        done()
+      })
+  })
+  it('return status 400 if body is invalid', (done) => {
+    const statusObj = {id: 1, state: 2};
+    request(HOST)
+      .patch('/status')
+      .send(statusObj)
+      .then((res) => {
+        expect(res.status).toBe(400);
+        done()
+      })
+  })
+})
