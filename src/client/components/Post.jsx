@@ -8,6 +8,14 @@ const Post = (props) => {
   //eventHandlers
   const { updateStatus} = props;
 
+  const style = {
+    post: {
+      height: '95%',
+      width: '250px',
+      backgroundColor: 'White'
+    }
+  }
+
   return(
     <div className='post'>
       <div className='ledger'>
