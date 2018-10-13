@@ -1,4 +1,5 @@
-const  db  = require('../postgresql.js');
+//server exported in order to close database after tests are done
+const  app  = require('../postgresql.js');
 
 module.exports = {
 
@@ -9,7 +10,7 @@ module.exports = {
    * @param {function} next sends req and res to next middleware
    */
   getPosts(req, res, next) {
-    db.any('SELECT * FROM "post"')
+    app.any('SELECT * FROM "post"')
       .then(data => {
         res.locals.data = data;
         return next();

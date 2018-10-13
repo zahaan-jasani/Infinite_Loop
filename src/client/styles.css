@@ -1,0 +1,26 @@
+.postContainer{
+  height: 700px;
+  width: 90%;
+  border-top: 6px solid rgb(85, 85, 85);
+  background-color: rgb(226, 226, 226);
+}
+
+.postRow{
+  height: 250px;
+  width: 95%;
+  border-top: 3px solid rgb(85, 85, 85);
+  background-color: rgb(185, 185, 185);
+  box-shadow: 3px 6px #888888;
+}
+
+.postRowClosed{
+  height: 100px;
+  width: 95%;
+  border-top: 3px solid rgb(85, 85, 85);
+  background-color: rgb(185, 185, 185);
+  box-shadow: 3px 6px #888888;
+}
+h2{
+  font-weight: 700;
+  font-size: 16px
+}

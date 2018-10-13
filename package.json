@@ -4,7 +4,7 @@
   "description": "Helpdesk ",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles --forceExit",
     "start": "parcel index.html",
     "server": "nodemon src/server/server.js"
   },
