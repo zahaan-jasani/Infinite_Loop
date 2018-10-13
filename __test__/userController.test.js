@@ -1,7 +1,14 @@
 const request = require('supertest');
-const App = require('../src/server/server');
+const db = require('../src/server/server');
 
 const HOST = 'http://localhost:3000';
+
+afterAll(async() => {
+  db.close();
+  await new Promise ((resolve, reject) => {
+    setTimeout(()=>{resolve()},0);
+  })
+})
 
 describe('Test the root path', () => {
   it('It should response the GET method', (done) => {
@@ -54,7 +61,7 @@ describe('patch', ()=> {
         done()
       })
   })
-  it('it should return the updated object to the client', (done) => {
+  it('should return the updated object to the client', (done) => {
     const statusObj = {postid: 1, userid: 1, status: 1};
     request(HOST)
       .patch('/status')

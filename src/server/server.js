@@ -35,7 +35,10 @@ app.use((err, req, res, next) => {
   res.status(400).send(err);
 });
 
-app.listen(3000, () => {
+//this needs to be exported to userController.test in order to run tests
+module.exports = app.listen(3000, () => {
   console.log('Listening on port 3000...');
 } );
+
+
 
