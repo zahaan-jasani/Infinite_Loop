@@ -1,4 +1,5 @@
 import React from 'react';
+import Post from './Post';
 
 export const PostSection = (props) => {
   // array of posts by status
@@ -7,6 +8,30 @@ export const PostSection = (props) => {
   const { updateStatus } = props; 
   // user info
   const { name, role } = props;
+
+  //css style for containers
+  const style = {
+    postContainer: {
+      height: '700px',
+      width: '90%',
+      borderTop: '6px solid rgb(85, 85, 85)',
+      backgroundColor: 'rgb(226, 226, 226)'
+    },
+    postRow: {
+      height: '250px',
+      width: '95%',
+      borderTop: '3px solid rgb(85, 85, 85)',
+      backgroundColor: 'rgb(185, 185, 185)',
+      boxShadow: '3px 6px #888888'
+    },
+    postRowClosed: {
+      height: '100px',
+      width: '95%',
+      borderTop: '3px solid rgb(85, 85, 85)',
+      backgroundColor: 'rgb(185, 185, 185)',
+      boxShadow: '3px 6px #888888'
+    }
+  }
 
   //iterate through each notStarted post and create component
   const notStartedComponents = notStarted.map((post, index) => {
@@ -63,15 +88,15 @@ export const PostSection = (props) => {
 
   // ** (CSS) class postRowClosed should be shorter than postRow**
   return (
-    <div className='postContainer'>
-      <div className='postRow'>
-        {notStartedComponents}
+    <div style={ style.postContainer }>
+      <div style={ style.postRow }>
+        { notStartedComponents }
       </div>
-      <div className='postRow'>
-        {inProgressComponents}
+      <div style={ style.postRow }>
+        { inProgressComponents }
       </div>
-      <div className='postRowClosed'> 
-        {closedComponents}
+      <div style={ style.postRowClosed }> 
+        { closedComponents }
       </div>
     </div>
   )
