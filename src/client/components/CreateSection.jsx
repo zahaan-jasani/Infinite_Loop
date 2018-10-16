@@ -1,75 +1,30 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions.js';
 
-class CreateSection extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      problem: '',
-      expect:'',
-      tried:'',
-      suspect:'',
-      topic:''
-    }
-    this.onProblemChangedHandler = this.onProblemChangedHandler.bind(this);
-    this.onExpectChangedHandler = this.onExpectChangedHandler.bind(this);
-    this.onTopicChangedHandler = this.onTopicChangedHandler.bind(this);
-    this.onTriedChangedHandler = this.onTriedChangedHandler.bind(this);
-    this.onSuspectChangedHandler = this.onSuspectChangedHandler.bind(this);
-    this.onSubmitHandler = this.onSubmitHandler.bind(this);
-  }
 
-  onProblemChangedHandler(event) {
-    const newState = Object.assign({}, this.state);
-    newState.problem = event.target.value;
-    this.setState(newState);
-  }
+const mapStateToProps = store => ({ 
+  
+  problem: store.infiniteReducer.problem,
+  expect: store.infiniteReducer.expect,
+  tried: store.infiniteReducer.tried,
+  suspect: store.infiniteReducer.suspect,
+  topic: store.infiniteReducer.topic, 
+});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    
+    onProblem: (event) => {dispatch(actions.onProblem(event))},   
+    onExpect: (event) => {dispatch(actions.onExpect(event))},
+    onTried: (event) => {dispatch(actions.onTried(event))},
+    onSuspect: (event) => {dispatch(actions.onSuspect(event))},
+    onCreateSectionSubmit: (event) => {dispatch(actions.onSuspect(event))},
+    onTopic: (event) => {dispatch(actions.onTopic(event))},
+  };
+};
 
-  onExpectChangedHandler(event) {
-    const newState = Object.assign({}, this.state);
-    newState.expect = event.target.value;
-    this.setState(newState);
-  }
-
-  onTopicChangedHandler(event) {
-    const newState = Object.assign({}, this.state);
-    newState.topic = event.target.value;
-    this.setState(newState);
-  }
-
-  onTriedChangedHandler(event) {
-    const newState = Object.assign({}, this.state);
-    newState.tried = event.target.value;
-    this.setState(newState);
-  }
-
-  onSuspectChangedHandler(event) {
-    const newState = Object.assign({}, this.state);
-    newState.suspect = event.target.value;
-    this.setState(newState);
-  }
-
-  onSubmitHandler(event) {
-    fetch('http://localhost:3000/createpost', {
-      headers: {'Content-Type': 'application/json'},
-      method: 'POST',
-      body: JSON.stringify({
-        createdby: this.props.userid,
-        problem: this.state.problem,
-        expect: this.state.expect,
-        tried: this.state.tried,
-        suspect: this.state.suspect,
-        topic: this.state.topic,
-      }),
-    })
-    .then(() => {
-      this.props.fetchData();
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  }
-
-  render(){
+const CreateSection = (props) => {
+  
     const divStyle = {
       border: "1px solid black",
       width: "500px",
@@ -77,20 +32,23 @@ class CreateSection extends Component {
       textAlign: "left",
       display: 'block'
     }
+    console.log(props,'in create')
     return (
       <div style = {divStyle}>
         <h2>Please enter the problem: </h2>
-        <label>Problem: </label><input onChange = {this.onProblemChangedHandler} type="text" placeholder=""/><br></br>
-        <label>What did I expect to happen: </label><input onChange = {this.onExpectChangedHandler} type="text" placeholder=""/><br></br>
-        <label>What have I tried: </label><input onChange = {this.onTriedChangedHandler} type="text" placeholder=""/><br></br>
-        <label>Why I suspect its not working: </label><input onChange = {this.onSuspectChangedHandler} type="text" placeholder=""/><br></br>
-        <label>Topic: </label><input onChange = {this.onTopicChangedHandler} type="text" placeholder=""/><br></br>
+        <label>Problem: </label><input onChange = {props.onProblem} type="text" placeholder="" value={props.problem}/><br></br>
+        <label>What did I expect to happen: </label><input onChange = {props.onExpect} type="text" placeholder="" value={props.expect}/><br></br>
+        <label>What have I tried: </label><input onChange = {props.onTried} type="text" placeholder="" value={props.tried}/><br></br>
+        <label>Why I suspect its not working: </label><input onChange = {props.onSuspect} type="text" placeholder="" value={props.suspect}/><br></br>
+        <label>Topic: </label><input onChange = {props.onTopic} type="text" placeholder="" value={props.topic}/><br></br>
         <div >
-          <button type="submit" onClick={this.onSubmitHandler}>Submit</button>
+          <button type="submit" onClick={() => 
+            props.onCreateSectionSubmit(props.userid,props.problem,props.expect,props.tried,props.suspect,props.topic,)
+            }>Submit</button>
         </div>
       </div>
     )
   }
  
-}
-export default CreateSection;
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateSection);

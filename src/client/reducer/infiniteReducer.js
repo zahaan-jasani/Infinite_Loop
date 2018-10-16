@@ -47,18 +47,38 @@ export default (state = initialState, action) => {
     case types.ON_PROBLEM: {
       const newState = Object.assign({}, state);
       newState.problem = action.payload.target.value;
+      return newState;
     }
     case types.ON_EXPECT: {
       const newState = Object.assign({}, state);
-      newState.problem = action.payload.target.value;
+      newState.expect = action.payload.target.value;
+      return newState;
     }
     case types.ON_SUSPECT: {
       const newState = Object.assign({}, state);
-      newState.problem = action.payload.target.value;
+      newState.suspect = action.payload.target.value;
+      return newState;
     }
     case types.ON_TRIED: {
       const newState = Object.assign({}, state);
-      newState.problem = action.payload.target.value;
+      newState.tried = action.payload.target.value;
+      return newState;
+    }
+    case types.ON_TOPIC: {
+      const newState = Object.assign({}, state);
+      console.log(action.payload.target.value,'in reducer')
+      newState.topic = action.payload.target.value;
+      return newState;
+    }
+    case types.ON_CREATESECTION_SUBMIT: {
+      const newState = Object.assign({}, state);
+      // fetch request, send all the problem/suspect/tried/topic to database
+      
+    }
+    case types.CHANGE_STATUS: {
+      const newState = Object.assign({}, state);
+      // fetch request, send all the problem/suspect/tried/topic to database
+      
     }
     default:
       return state;
