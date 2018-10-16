@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+import PostSection from './PostSection.jsx';
+import Signup from './Signup.jsx';
+import CreateSection from './CreateSection.jsx';
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions'
+const mapStateToProps = store => ({
 
-import PostSection from './components/PostSection.jsx';
-import Signup from './components/Signup.jsx';
-import CreateSection from './components/CreateSection.jsx';
+})
+const mapDispatchToProps = dispatch => ({
+  
+})
 
 class App extends Component {
   constructor(props) {
@@ -41,19 +48,19 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
-  onSignupChangedHandler(event) {
-    const newState = Object.assign({}, this.state);
-    newState.role = event.currentTarget.value;
-    console.log(newState.role);
-    this.setState(newState);
-  }
+  // onSignupChangedHandler(event) {
+  //   const newState = Object.assign({}, this.state);
+  //   newState.role = event.currentTarget.value;
+  //   console.log(newState.role);
+  //   this.setState(newState);
+  // }
 
-  onSignupNameChangeHandler(event) {
-    const newState = Object.assign({}, this.state);
-    newState.name = event.target.value;
-    console.log(newState.name);
-    this.setState(newState);
-  }
+  // onSignupNameChangeHandler(event) {
+  //   const newState = Object.assign({}, this.state);
+  //   newState.name = event.target.value;
+  //   console.log(newState.name);
+  //   this.setState(newState);
+  // }
 
   onSignupSubmitHandler() {
     fetch('http://localhost:3000/createuser', {
