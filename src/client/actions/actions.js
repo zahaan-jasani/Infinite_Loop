@@ -19,6 +19,18 @@ export const onLoginSubmit = (user, pass) => ({
   type: types.ON_LOGIN_SUBMIT,
   payload: {user, pass},
   //requires thunk
+  // return function (dispatch) {
+  //   return fetch('http://localhost:3000/login', {
+  //     method: 'POST',
+  //     headers: { 'Content-type': 'application/json'},
+  //     body: JSON.stringify(inputObj),
+  //   })
+  //   .then((res) => {
+  //     if(res.status === 200) dispatch(loginSuccess());
+  //     else dispatch(loginFail())
+  //     }
+  //   );
+  // };
 });
 export const onSignupSubmit = (user, pass, role) => ({
   type: types.ON_SIGNUP_SUBMIT,
@@ -31,6 +43,13 @@ export const loginSuccess = () => ({
 });
 
 export const loginFail = () => ({
+  type: types.LOGIN_FAIL,
+});
+export const signUpSuccess = () => ({
+  type: types.LOGIN_SUCCESS,
+});
+
+export const signUpFail = () => ({
   type: types.LOGIN_FAIL,
 });
 
@@ -53,6 +72,10 @@ export const onSuspect = (event) => ({
   type: types.ON_SUSPECT,
   payload: event,
 });
+export const onTopic = (event) => ({
+  type: types.ON_TOPIC,
+  payload: event,
+});
 
 export const changeStatus = (userid, postStatus, postid) => ({
   type: types.CHANGE_STATUS,
@@ -62,3 +85,8 @@ export const changeStatus = (userid, postStatus, postid) => ({
 export const togglePage = () => ({
   type: types.TOGGLE_PAGE,
 });
+
+export const onCreateSectionSubmit = (userid, problem, expect, tried, suspect, topic) => ({
+  type: types.ON_CREATESECTION_SUBMIT,
+  //payload: TODO: thunk
+})

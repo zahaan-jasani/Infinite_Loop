@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LoginPage from './LoginPage';
-// import HomePage from './HomePage';
+import HomePage from './HomePage';
 
 
 
 
 const mapStateToProps = store => ({
   // provide pertinent state here
-  currentPage: store.currentPage,
+  currentPage: store.infiniteReducer.currentPage,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -26,7 +26,9 @@ class App extends React.Component {
       let currPage;
       switch(this.props.currentPage) {
         case 'login':
-            currPage = <LoginPage />;
+            // currPage = <LoginPage />;
+            currPage = <HomePage />;
+
             break;
         case 'home':
             currPage = <HomePage />;
