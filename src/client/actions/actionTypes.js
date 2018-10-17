@@ -1,9 +1,18 @@
 export const CREATE_USERNAME = 'CREATE_USERNAME';
 export const CREATE_ROLE = 'CREATE_ROLE';
 export const CREATE_PASSWORD = 'CREATE_PASSWORD';
+export const CREATE_FIRSTNAME = 'CREATE_FIRSTNAME';
+export const CREATE_LASTNAME = 'CREATE_LASTNAME';
+
+
 export const ON_LOGIN_SUBMIT = 'ON_LOGIN_SUBMIT';
 export const ON_LOGIN_SUCCESS = 'ON_LOGIN_SUCCESS';
 export const ON_LOGIN_FAIL = 'ON_LOGIN_FAIL';
+
+export const ON_SIGNUP_SUBMIT = 'ON_SIGNUP_SUBMIT';
+export const ON_SIGNUP_SUCCESS = 'ON_SIGNUP_SUCCESS';
+export const ON_SIGNUP_FAIL = 'ON_SIGNUP_FAIL';
+
 export const ON_PROBLEM = 'ON_PROBLEM';
 export const ON_EXPECT = 'ON_EXPECT';
 export const ON_TRIED = 'ON_TRIED';
@@ -14,5 +23,12 @@ export const CHANGE_STATUS = 'CHANGE_STATUS';
 //export const ON_SUBMIT = 'ON_SUBMIT';
 export const FETCH_DATA = 'FETCH_DATA';
 export const TOGGLE_PAGE = 'TOGGLE_PAGE';
-export const ON_SIGNUP_SUBMIT = 'ON_SIGNUP_SUBMIT';
+
 export const ON_CREATESECTION_SUBMIT = 'ON_CREATESECTION_SUBMIT';
+export const UPDATE_CLOSED = 'UPDATE_CLOSED';
+export const UPDATE_CLAIMED = 'UPDATE_CLAIMED';
+export const UPDATE_UNCLAIMED = 'UPDATE_UNCLAIMED';
+export const SAVE_LOGIN_INFO = 'SAVE_LOGIN_INFO';
+
+
+

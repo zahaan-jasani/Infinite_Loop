@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/actions.js'
 
 const mapStateToProps = store => ({
-  username: store.username,
-  password: store.password,
-  role: store.role,
+  username: store.infiniteReducer.username,
+  password: store.infiniteReducer.password,
+  role: store.infiniteReducer.role,
+  firstname: store.infiniteReducer.firstname,
+  lastname: store.infiniteReducer.lastname,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -18,6 +20,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     createRole: (event) => {
       dispatch(actions.createRole(event));
+    },
+    createFirstname: (event) => {
+      dispatch(actions.createFirstname(event));
+    },
+    createLastname: (event) => {
+      dispatch(actions.createLastname(event));
     },
     togglePage: () => {
       dispatch(actions.togglePage());
@@ -57,10 +65,16 @@ const LoginPage = (props) => {
           <option value='helper'>Helper</option>
         </select>
       </div>
+
+      
+
+      <label>FirstName: </label><input onChange = {props.createFirstname} type="text" placeholder="firstname" value={props.firstname}/>
+      <label>LastName: </label><input onChange = {props.createLastname} type="text" placeholder="lastname" value={props.lastname}/>
+      
       <div style={dStyle}>
         <button type="button" onClick={() => props.onLoginSubmit(props.username, props.password)}>Login</button>
         <br></br>
-        <button type="button" onClick={() => props.onSignupSubmit(props.username, props.password, props.role)}>Sign Up</button>
+        <button type="button" onClick={() => props.onSignupSubmit(props)}>Sign Up</button>
       </div>
     </div>
   )

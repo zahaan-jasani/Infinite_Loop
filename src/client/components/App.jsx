@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LoginPage from './LoginPage';
+import TestLoginPage from './TestLoginPage';
+
 import HomePage from './HomePage';
 
 
@@ -26,16 +28,20 @@ class App extends React.Component {
       let currPage;
       switch(this.props.currentPage) {
         case 'login':
-            // currPage = <LoginPage />;
-            currPage = <HomePage />;
-
-            break;
+        // currPage = <TestLoginPage />;
+          currPage = <LoginPage />;
+          // currPage = <HomePage />;
+          break;
         case 'home':
-            currPage = <HomePage />;
-            break;
+          currPage = <HomePage />;
+          break;
+        case 'signup':
+          currPage = <TestLoginPage />;
+          break;
+
         default:
-            currPage = <LoginPage />;
-            break;
+        currPage = <LoginPage />;
+        break;
       }
       
       return(

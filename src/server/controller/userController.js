@@ -33,7 +33,11 @@ module.exports = {
    * @param {Function} next - passes req and res to the next middleware
    */
   verifyUser(req, res, next) {
+<<<<<<< HEAD
     db.any("SELECT user_id, username, password, role FROM users WHERE username = $1 AND password = $2", [req.body.username, req.body.password])
+=======
+    db.any("SELECT user_id, username, password, role, firstname, lastname FROM users WHERE username = $1 AND password = $2", [req.body.username, req.body.password])
+>>>>>>> b025ccfd22e9142f00b43efabff20eff4c326738
     .then((data) => {
       if(data.length === 0) {
         return res.status(300).send();
