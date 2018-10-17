@@ -55,10 +55,12 @@ const PostSection = (props) => {
 
   //iterate through each notStarted post and create component
   const notStartedComponents = props.notStarted.map((post, index) => {
+    console.log('props.notStarted');
+    console.log(props.notStarted);
     return <Post
       key={index}
       // name={props.name}
-      // role={props.role}
+      role={props.role}
       createdBy={post.createdby}
       resolvedBy={post.resolvedby}
       problem={post.problem}
@@ -67,19 +69,19 @@ const PostSection = (props) => {
       suspect={post.suspect}
       topic={post.topic}
       status={post.status}
-      changeStatus={changeStatus}
-      helperid = {post.helperid}
-      studentid = {post.studentid}
+      changeStatus={props.changeStatus}
       statusid = {post.statusid}
       postid = {post.postid}
       />
   });
   //iterate through each notStarted post and create component
+  console.log('props.inProgress');
+  console.log(props.inProgress);
   const inProgressComponents = props.inProgress.map((post, index) => {
     return <Post
-      key={index}
+      key={index * 10000}
       // name={name}
-      // role={role}
+      //role={role}
       createdBy={post.createdby}
       resolvedBy={post.resolvedby}
       problem={post.problem}
@@ -88,9 +90,7 @@ const PostSection = (props) => {
       suspect={post.suspect}
       topic={post.topic}
       status={post.status}
-      changeStatus={changeStatus}
-      helperid = {post.helperid}
-      studentid = {post.studentid}
+      changeStatus={props.changeStatus}
       statusid = {post.statusid}
       postid = {post.postid}
       />
@@ -98,7 +98,7 @@ const PostSection = (props) => {
   //iterate through each notStarted post and create component
   const closedComponents = props.closed.map((post, index) => {
     return <Post
-      key={index}
+      // key={index * 10000}
       // name={name}
       // role={role}
       createdBy={post.createdby}
@@ -110,8 +110,6 @@ const PostSection = (props) => {
       topic={post.topic}
       status={post.status}
       changeStatus={changeStatus}
-      helperid = {post.helperid}
-      studentid = {post.studentid}
       statusid = {post.statusid}
       postid = {post.postid}
       />
@@ -130,6 +128,7 @@ const PostSection = (props) => {
       <div style={ style.postRowClosed }> 
         { closedComponents }
       </div>
+      
     </div>
   )
   

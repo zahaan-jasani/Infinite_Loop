@@ -32,7 +32,6 @@ const CreateSection = (props) => {
       textAlign: "left",
       display: 'block'
     }
-    console.log(props,'in create')
     return (
       <div style = {divStyle}>
         <h2>Please enter the problem: </h2>
@@ -40,7 +39,35 @@ const CreateSection = (props) => {
         <label>What did I expect to happen: </label><input onChange = {props.onExpect} type="text" placeholder="" value={props.expect}/><br></br>
         <label>What have I tried: </label><input onChange = {props.onTried} type="text" placeholder="" value={props.tried}/><br></br>
         <label>Why I suspect its not working: </label><input onChange = {props.onSuspect} type="text" placeholder="" value={props.suspect}/><br></br>
-        <label>Topic: </label><input onChange = {props.onTopic} type="text" placeholder="" value={props.topic}/><br></br>
+        <label>Topic: </label>
+
+        {/* replace this part */}
+        <select defaultValue="" onChange={props.onTopic}>
+          <option value="" disabled>Select topic</option>
+          <option value='AJAX'>AJAX</option>
+          <option value='Algorithms / Javascript'>Algorithms / Javascript</option>
+          <option value='Build Tools: Grunt / Gulp / Webpack / etc'>Build Tools: Grunt / Gulp / Webpack / etc</option>
+          <option value='Cookies / Local Storage'>Cookies / Local Storage</option>
+          <option value='CSS'>CSS</option>
+          <option value='Data Structures'>Data Structures</option>
+          <option value='Developer Tools'>Developer Tools</option>
+          <option value='DOM Manipulation / jQuery'>DOM Manipulation / jQuery</option>
+          <option value='Express'>Express</option>
+          <option value='Git / GitHub'>Git / GitHub</option>
+          <option value='HTML'>HTML</option>
+          <option value='Node'>Node</option>
+          <option value='Node Package Manager'>Node Package Manager</option>
+          <option value='Non-Relational Databases / MongoDB / Mongoose'>Non-Relational Databases / MongoDB / Mongoose</option>
+          <option value='O-Auth'>O-Auth</option>
+          <option value='React'>React</option>
+          <option value='Redux'>Redux</option>
+          <option value='Relational Databases / SQL / Sequelize'>Relational Databases / SQL / Sequelize</option>
+          <option value='Servers'>Servers</option>
+          <option value='Testing'>Testing</option>
+        </select>
+
+        {/* <input onChange = {props.onTopic} type="text" placeholder="" value={props.topic}/> */}
+        <br></br>
         <div >
           <button type="submit" onClick={() => 
             props.onCreateSectionSubmit(props.userid,props.problem,props.expect,props.tried,props.suspect,props.topic,)
