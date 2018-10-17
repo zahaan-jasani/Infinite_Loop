@@ -28,11 +28,11 @@ const mapDispatchToProps = (dispatch) => {
     onLoginSubmit: (user, pass) => {
       dispatch(actions.onLoginSubmit(user, pass));
     },
-
+    // toggle
   };
 };
 
-const LoginPage = (props) => {
+const TestLoginPage = (props) => {
   const divStyle = {
     border: "1px solid black",
     width: "300px",
@@ -45,25 +45,27 @@ const LoginPage = (props) => {
   }
   return (
     <div style = {divStyle}>
-      <h2>Please enter your name: </h2>
-      {/* <label>Name: </label><input onChange = {props.onSignupNameChangedHandler} type="text" placeholder="Your name"/> */}
-      <label>UserName: </label><input onChange = {props.createUsername} type="text" placeholder="Username" value={props.username}/>
+      <h2>Please ente an account please log in</h2>
+<label>UserName: </label><input onChange = {props.createUsername} type="text" placeholder="Username" value={props.username}/>
 
       <label>Password: </label><input onChange = {props.createPassword} type="text" placeholder="Password" value={props.password}/>
       <div style={dStyle}>
-        <label>Choose your role: </label><select defaultValue="" onChange={props.createRole}>
-          <option value="" disabled>Select your role</option>
-          <option value='student'>Student</option>
-          <option value='helper'>Helper</option>
-        </select>
-      </div>
-      <div style={dStyle}>
         <button type="button" onClick={() => props.onLoginSubmit(props.username, props.password)}>Login</button>
         <br></br>
-        <button type="button" onClick={() => props.onSignupSubmit(props.username, props.password, props.role)}>Sign Up</button>
+        <button type="button" onClick={() => props.onSignupSubmit(props.username, props.password, props.role)}>No account? Sign up!</button>
       </div>
     </div>
   )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(TestLoginPage);
+
+
+      // {/* <label>Name: </label><input onChange = {props.onSignupNameChangedHandler} type="text" placeholder="Your name"/> */}
+      // <div style={/* // {dStyle}>
+      //   <label>Ch// oose your role: </label><select defaultValue="" onChange={props.createRole}>
+      //     <option//  value="" disabled>Select your role</option>
+      //     <option//  value='student'>Student</option>
+      //     <option//  value='helper'>Helper</option>
+      //   </select>// 
+      // </div>//  */}
